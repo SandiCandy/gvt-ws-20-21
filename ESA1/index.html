@@ -3,16 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>ESA 1 - Graphical Visualisation Technologies</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
 
-  <body onload="loadImage('example1.jpg')">
-      <h1>ESA 1 - Interaktiv animierte Scheibe</h1>
-    <h2>Graphical Visualisation Technologies</h2>
+  <body onload="loadSprite('css_sprites.png')">
+      <div class="container">
+        <h1 class="title">ESA 1 - Interaktiv animierte Scheibe</h1>
+        <p class="subtitle">
+          Graphical Visualisation Technologies
+        </p>
 
-        <img id="x">
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-4">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-primary">
+              <p class="title">Vertical...</p>
+              <p class="subtitle">Top tile</p>
+            </article>
+            <article class="tile is-child notification is-warning">
+              <p class="title">Quellen:</p>
+              <p>Salad Bowl from <a href="https://unsplash.com/photos/IGfIGP5ONV0">Unsplash.com</a></p>
+              <p>CSS-Framework <a href="bulma.io">Bulma.io</a></p>
+            </article>
+          </div>
+          <!-- <div class="tile is-parent"> -->
+            <article class="tile is-child notification is-info">
+              <p class="title">Middle tile</p>
+              <p class="subtitle">With an image</p>
+                <section class="section" id="view"></section>
+            </article>
+          </div>
+        </div>
+        </div>
+    </div>
+  </div>
+    
 
-        <button onclick='myFunc("test")'>Click</button>
+
+        
   </body>
 </html>
