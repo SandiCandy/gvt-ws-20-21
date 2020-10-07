@@ -1,7 +1,12 @@
 body {
 }
 
-section#view {
+section#view{
     width: 758px;
     height: 758px;
+}
+
+section#view2 {
+    width: 500px; 
+    height: 500px;
 }

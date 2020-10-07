@@ -9,7 +9,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body onload="loadSprite('css_sprites.png')">
+  <body onload="loadSprite('css_sprites.png', 'view');loadSprite('ferriswheel.png', 'view2')">
       <div class="container">
         <h1 class="title">ESA 1 - Interaktiv animierte Scheibe</h1>
         <p class="subtitle">
@@ -21,28 +21,36 @@
         <div class="tile">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification is-primary">
-              <p class="title">Vertical...</p>
+              <p class="title">Interaktiv animierte Scheibe (+ Erweiterung 2)</p>
               <p class="subtitle">Top tile</p>
             </article>
             <article class="tile is-child notification is-warning">
               <p class="title">Quellen:</p>
               <p>Salad Bowl from <a href="https://unsplash.com/photos/IGfIGP5ONV0">Unsplash.com</a></p>
+              <p>Ferris Wheel: selfmade.</p>
               <p>CSS-Framework <a href="bulma.io">Bulma.io</a></p>
             </article>
           </div>
-          <!-- <div class="tile is-parent"> -->
+          <div class="tile is-parent is-vertical">
             <article class="tile is-child notification is-info">
               <p class="title">Middle tile</p>
               <p class="subtitle">With an image</p>
-                <section class="section" id="view"></section>
+              <section class="section" id="view"></section>
+            </article>
+            <article class="tile is-child notification is-primary">
+              <p class="title">Erweiterung 1</p>
+              <p class="subtitle">Top tile</p>
+              <section class="section" id="view2"></section>
             </article>
           </div>
+ 
+            
+      
         </div>
         </div>
     </div>
   </div>
     
-
 
         
   </body>

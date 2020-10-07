@@ -1,9 +1,5 @@
 "use strict";
 
-// alert("Hello " + navigator.product);
-
-const greeting = "moin!"
-
 window.onkeydown = function(evt) {
 	var key = evt.which ? evt.which : evt.keyCode;
 
@@ -16,9 +12,13 @@ window.onkeydown = function(evt) {
 		case('L'):
             rotateLeft();
 		break;
-		case('S'):
-            // triggerDiscAnimation();
-            console.log("Spin")
+		case('A'):
+            animateBowl();
+            console.log("Start animation")
+            break;
+        case('S'):
+            console.log("riiiiiisenrad")
+            animateFerrisWheel();
             break;
         default:
             console.log('Miaaaau')
@@ -27,24 +27,60 @@ window.onkeydown = function(evt) {
 
 function rotateRight() {
     let view = document.getElementById('view');
-    let intNewPosY = parseInt(view.style.backgroundPositionY) - 758;
-    view.style.backgroundPositionY = intNewPosY + "px";
+    let pos = parseInt(view.style.backgroundPositionY);
+    pos -= 758;
+    pos > -26541 ? pos : pos= -10;
+    view.style.backgroundPositionY = pos + "px";
 }
 
 function rotateLeft() {
     let view = document.getElementById('view');
-    let intNewPosY = parseInt(view.style.backgroundPositionY) + 758;
-    view.style.backgroundPositionY = intNewPosY + "px";
+    let pos = parseInt(view.style.backgroundPositionY);
+    pos += 758;
+    pos < -10 ? pos : pos= -26540;
+    view.style.backgroundPositionY = pos + "px";
 }
 
-function loadSprite(filename) {
-    console.log('looooooooad.')
+function loadSprite(filename, elementId) {
+    let path = "file:///Users/sandra/Desktop/GVT/ESA1/images/"
     let imgObj = new Image();
-    imgObj.src = "file:///Users/sandra/Desktop/GVT/ESA1/images/" + filename;
+    imgObj.src =  path + filename;
     imgObj.onload = function() {
-        let view = document.getElementById('view');
-        view.style.backgroundImage = "url('file:///Users/sandra/Desktop/GVT/ESA1/images/css_sprites.png')";
+        let view = document.getElementById(elementId);
+        view.style.backgroundImage = "url('" + imgObj.src + "')";
         view.style.backgroundPosition = "-10px -10px";
         view.style.backgroundRepeat = "no-repeat"
     }
 }
+
+function animateBowl() {
+    let view = document.getElementById('view');
+    let pos = parseInt(view.style.backgroundPositionY);
+    var id = setInterval(frame, 50);
+    function frame() {
+        // if(window.onkeydown = function(evt) {
+        //     clearInterval(id);
+        //     return;
+        // })
+        pos -= 758;
+        pos > -26541 ? pos : pos= -10;
+        view.style.backgroundPositionY = pos + "px";
+    }
+}
+
+function animateFerrisWheel() {
+    let view = document.getElementById('view2');
+    let pos = parseInt(view.style.backgroundPositionY);
+    var id = setInterval(frame, 200);
+    function frame() {
+        pos -= 520;
+        pos > -2611 ? pos : pos= -10;
+        view.style.backgroundPositionY = pos + "px";
+    }
+}
+
+
+// function stopAnimation() {
+//     let view = document.getElementById('view');
+//     let pos = parseInt(view.style.backgroundPositionY);
+// }
