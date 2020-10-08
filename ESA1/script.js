@@ -17,7 +17,6 @@ window.onkeydown = function(evt) {
             console.log("Start animation")
             break;
         case('S'):
-            console.log("riiiiiisenrad")
             animateFerrisWheel();
             break;
         default:
@@ -58,10 +57,6 @@ function animateBowl() {
     let pos = parseInt(view.style.backgroundPositionY);
     var id = setInterval(frame, 50);
     function frame() {
-        // if(window.onkeydown = function(evt) {
-        //     clearInterval(id);
-        //     return;
-        // })
         pos -= 758;
         pos > -26541 ? pos : pos= -10;
         view.style.backgroundPositionY = pos + "px";
@@ -71,10 +66,10 @@ function animateBowl() {
 function animateFerrisWheel() {
     let view = document.getElementById('view2');
     let pos = parseInt(view.style.backgroundPositionY);
-    var id = setInterval(frame, 200);
+    var id = setInterval(frame, 100);
     function frame() {
         pos -= 520;
-        pos > -2611 ? pos : pos= -10;
+        pos > -4691 ? pos : pos= -10;
         view.style.backgroundPositionY = pos + "px";
     }
 }
