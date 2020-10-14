@@ -1,0 +1,81 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>Minimales WebGL Beispiel</title>
+    </head>
+    <body>
+        <canvas id="canvas" width="600" height="600"></canvas>
+        <script>
+            // Get the WebGL context.
+            var canvas = document.getElementById('canvas');
+            var gl = canvas.getContext('experimental-webgl');
+
+            // Pipeline setup.
+            gl.clearColor(1, 1, 1, 1);
+            // Backface culling.
+            gl.frontFace(gl.CCW);
+            gl.enable(gl.CULL_FACE);
+            gl.cullFace(gl.BACK);
+            //gl.cullFace(gl.FRONT);
+
+            // Compile vertex shader.
+            var vsSource = 'attribute vec2 pos;'+
+                'void main(){ gl_Position = vec4(pos, 0, 11); }';
+                //'void main(){ gl_Position = vec4(pos*0.2-0.5, 0, 1); }'; 
+            var vs = gl.createShader(gl.VERTEX_SHADER);
+            gl.shaderSource(vs, vsSource);
+            gl.compileShader(vs);
+
+            // Compile fragment shader.
+            fsSouce =  'void main() { gl_FragColor = vec4(0,0,0,1); }';
+            var fs = gl.createShader(gl.FRAGMENT_SHADER);
+            gl.shaderSource(fs, fsSouce);
+            gl.compileShader(fs);
+
+            // Link shader together into a program.
+            var prog = gl.createProgram();
+            gl.attachShader(prog, vs);
+            gl.attachShader(prog, fs);
+            gl.linkProgram(prog);
+            gl.useProgram(prog);
+
+            var v = [0,0, 10,0];
+            for (var i=1; i<=10; i++) {
+                v.push(1,i, 9,i, 9,-1*i, 1, -1*i)
+            }
+            console.log(v);
+
+            // Vertex data.
+            var vertices = new Float32Array(v);
+            // Index data.
+            var ind = [];
+            for (var i=0; i<10; ++i) {
+                ind.push(0, 4*i+2, 4*i+3, 1, 4*i+4, 4*i+5)
+            }
+
+            var indices = new Uint16Array(ind);
+
+            // Setup vertex buffer object.
+            var vbo = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+            gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+            // Connect vertex buffer to attribute variable.
+            var posAttrib = gl.getAttribLocation(prog, 'pos');
+            gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(posAttrib);
+
+            // Setup index buffer object.
+            var ibo = gl.createBuffer();
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, 
+                gl.STATIC_DRAW);
+            ibo.numerOfEmements = indices.length;
+
+            // Clear framebuffer and render primitives.
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawElements(gl.LINE_LOOP, ibo.numerOfEmements, 
+                gl.UNSIGNED_SHORT, 0);  
+        </script>
+    </body>
+</html>
